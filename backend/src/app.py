@@ -3,10 +3,7 @@ FastAPI entry point for Blog Agent.
 Exposes blog generation endpoint.
 """
 
-import os
 from fastapi import FastAPI, HTTPException
-from fastapi.staticfiles import StaticFiles
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 
@@ -32,22 +29,12 @@ app = FastAPI(
     version="1.0.0"
 )
 
-origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # ---------------- Request Schema ----------------
 
 class BlogRequest(BaseModel):
     topic: str
     platform: Optional[str] = "generic"
-    enable_research: bool = True
 
 
 class BlogResponse(BaseModel):
@@ -82,13 +69,16 @@ def generate_blog(request: BlogRequest):
         result = agent.invoke({
             "topic": request.topic,
             "platform": platform,
-            "needs_research": request.enable_research,
+            "needs_research": False,
             "mode": "",
             "queries": [],
             "evidence": [],
             "plan": None,
             "sections": [],
             "final_blog": "",
+            "md_with_placeholders": "",
+            "image_specs": [],
+            "final_images": [],
             "metadata": {}
         })
 

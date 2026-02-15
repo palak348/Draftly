@@ -33,8 +33,7 @@ export function GeneratorCard() {
             const data = await generateBlog({
                 topic,
                 platform,
-                enable_research: true, // Hardcoded for now based on UI request, could be toggles
-                enable_images: true
+                enable_research: true
             });
             setResult(data);
             toast.success("Blog generated successfully!");
@@ -102,7 +101,7 @@ export function GeneratorCard() {
                             <div className="flex items-end pb-2">
                                 <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted/50 p-2 rounded-md w-full justify-center">
                                     <Settings2 className="h-4 w-4" />
-                                    <span>Auto-Research & Images Enabled</span>
+                                    <span>Auto-Research Enabled</span>
                                 </div>
                             </div>
                         </div>
