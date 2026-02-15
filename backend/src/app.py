@@ -4,7 +4,6 @@ Exposes blog generation endpoint.
 """
 
 from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 
@@ -28,14 +27,6 @@ app = FastAPI(
     title="Blog Writing Agent API",
     description="AI-powered multi-agent blog generation system",
     version="1.0.0"
-)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
 )
 
 
