@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "draftly-backend"
+version = "0.1.0"
+description = "Backend for Draftly Blog Agent"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "python-dotenv",
+    "requests",
+    "tenacity",
+    "langchain",
+    "langchain-community",
+    "langgraph",
+    "tavily-python",
+    "huggingface-hub>=0.24.0",
+    "pillow>=10.0.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

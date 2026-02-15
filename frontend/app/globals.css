@@ -1,0 +1,218 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-fade-up: fade-up 0.5s ease-out;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+:root {
+  /* Deep Indigo / Midnight Blue Base */
+  --background: 240 30% 6%;
+  /* #0c0c1d - very dark blue */
+  --foreground: 210 40% 98%;
+
+  --card: 240 25% 10%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 240 30% 8%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 238 75% 65%;
+  /* Indigo-ish violet */
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 240 20% 12%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 240 20% 14%;
+  --muted-foreground: 240 10% 65%;
+
+  --accent: 250 50% 15%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 240 20% 15%;
+  --input: 240 20% 15%;
+  --ring: 238 75% 65%;
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 240 30% 6%;
+  --foreground: 210 40% 98%;
+
+  --card: 240 25% 10%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 240 30% 8%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 238 75% 65%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 240 20% 12%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 240 20% 14%;
+  --muted-foreground: 240 10% 65%;
+
+  --accent: 250 50% 15%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 240 20% 15%;
+  --input: 240 20% 15%;
+  --ring: 238 75% 65%;
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-[#0b0b15] text-foreground min-h-screen relative overflow-x-hidden;
+  /* Premium Dark AI SaaS Gradient Background */
+  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 40%),
+    linear-gradient(to bottom, #0f0c29 0%, #14112f 50%, #0c0c1d 100%);
+  background-attachment: fixed;
+}
+
+@media print {
+
+  /* Hide default browser headers/footers */
+  @page {
+    margin: 0;
+    size: auto;
+  }
+
+  /* Reset Body */
+  body {
+    background: white !important;
+    color: black !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 20mm !important;
+    /* Restore margins as padding */
+  }
+
+  /* Hide UI Elements */
+  form,
+  button,
+  nav,
+  header,
+  footer,
+  /* Floating action bar */
+  .fixed,
+  div[data-html2canvas-ignore] {
+    display: none !important;
+  }
+
+  /* Target Specific Elements to Hide if generic selectors miss */
+  /* Hide the DraftForm container */
+  div:has(> form) {
+    display: none !important;
+  }
+
+  /* Style the Blog Content */
+  #blog-export-container {
+    display: block !important;
+    position: relative !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    color: black !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Typography Overrides for Print */
+  #blog-export-container h1,
+  #blog-export-container h2,
+  #blog-export-container h3,
+  #blog-export-container p,
+  #blog-export-container li,
+  #blog-export-container strong,
+  #blog-export-container span,
+  #blog-export-container div {
+    color: black !important;
+    text-shadow: none !important;
+  }
+
+  #blog-export-container h2 span {
+    display: none !important;
+    /* Hide gradient pill */
+  }
+
+  #blog-export-container code {
+    border: 1px solid #ddd !important;
+    background: #f5f5f5 !important;
+    color: black !important;
+  }
+
+  #blog-export-container blockquote {
+    border-left-color: #000 !important;
+    background: transparent !important;
+    color: #333 !important;
+  }
+}

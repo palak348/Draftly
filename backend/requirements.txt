@@ -1,0 +1,9 @@
+python-dotenv
+requests
+tenacity
+langchain
+langchain-community
+langgraph
+tavily-python
+
+google-generativeai
